@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+
+        }
+        #canvas{
+            display: block;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: skyblue;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="600" ></canvas>
+
+
+
+<script>
+   var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        console.log('你的浏览器支持Canvas!');
+    } else {
+        console.log('你的浏览器不支持Canvas!');
+    }
+
+     //1 上下文
+     // .注意：2d小写，二维， 3d：webgl
+    var ctx = canvas.getContext("2d");
+    var ctx3D = canvas.getContext("webgl");
+    console.log(ctx3D);
+
+    // 2.绘制直线
+    ctx.moveTo(100, 100); // 起点
+    ctx.lineTo(400,100);
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+    
+    /** 3 . 绘制三角形
+     * 如果复杂路径绘制，必须使用路径开始和结束。
+    */
+    ctx.beginPath();        //开始路径
+    ctx.moveTo(100,200);    //三角形，左顶点
+    ctx.lineTo(300, 200);   //右顶点
+    ctx.lineTo(300, 400);   //底部的点
+    ctx.closePath();        //结束路径
+    ctx.stroke();           //描边路径
+    
+
+    /* 4.绘制矩形
+    * ctx.rect(x, y, width, height);
+    *     
+    */
+    ctx.rect(500,100,200,100);
+    // 描边
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // ctx.fillStyle = 'blue';
+    // ctx.fill();
+
+
+    /**
+     * 5 .圆
+     * ctx.arc(x,y,r,starAngle,endAngle,counterclockwise);
+     **/
+     ctx.arc(500,500,80,0,2*Math.PI,false);
+    ctx.strokeStyle = 'red';
+    ctx.fillStyle = 'pink';
+    ctx.fill();
+    // ctx.stroke();
+     
+</script>
+
+</body>
+</html>
